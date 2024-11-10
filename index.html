@@ -7,23 +7,23 @@
 
     <!-- Inline CSS for Holy Grail Layout and styling -->
     <style>
-        /* CSS Grid layout */
+        /* CSS Grid layout to structure the page */
         body {
             display: grid;
             grid-template-areas:
                 "header header header"
-                "menu content content"
-                "footer footer footer";
-            grid-template-columns: 1fr 3fr;
-            grid-template-rows: auto 1fr auto;
+                "menu content ad"
+                "footer footer footer"; /* Added 'ad' area for the advertisement */
+            grid-template-columns: 1fr 3fr 1fr; /* 1st column for the menu, 2nd for content, 3rd for the advertisement */
+            grid-template-rows: auto 1fr auto; /* Auto size for header and footer, flexible content section */
             gap: 10px;
             min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
+            background-color: #f0f4f8; /* Light background color */
         }
         header { 
-            grid-area: header; 
+            grid-area: header; /* Placing header in the header area */
             background-color: #4CAF50;
             color: white;
             padding: 20px;
@@ -32,12 +32,12 @@
             font-weight: bold;
         }
         .menu { 
-            grid-area: menu; 
+            grid-area: menu; /* Placing menu in the menu area */
             background-color: #e9ecef;
             padding: 20px;
             font-size: 1.1em;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Layout for the menu links */
             gap: 10px;
         }
         .menu ul {
@@ -56,19 +56,19 @@
             transition: background-color 0.3s;
         }
         .menu li a:hover {
-            background-color: #d4e5d6;
+            background-color: #d4e5d6; /* Hover effect on menu items */
             color: #333;
         }
         main { 
-            grid-area: content; 
+            grid-area: content; /* Placing content in the content area */
             background-color: #ffffff;
             padding: 20px;
             font-size: 1.1em;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding subtle shadow around content */
         }
         footer { 
-            grid-area: footer; 
+            grid-area: footer; /* Placing footer in the footer area */
             background-color: #4CAF50;
             color: white;
             padding: 10px;
@@ -86,7 +86,7 @@
             transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #45a049; /* Hover effect for button */
         }
         input[type="text"] {
             width: 100%;
@@ -95,6 +95,35 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-sizing: border-box;
+        }
+
+        /* Style for the advertisement image */
+        .advertisement {
+            width: 100%; /* Ensure the ad takes full width */
+            max-width: 100%; /* Make sure the image can scale properly */
+            margin: 0 auto; /* Center the image horizontally */
+            display: block;
+            border-radius: 10px; /* Optional: rounded corners for the ad */
+            transition: transform 0.3s ease; /* Add zoom effect */
+        }
+
+        .advertisement:hover {
+            transform: scale(1.05); /* Zoom in on hover */
+        }
+
+        .advertisement-area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .advertisement-area h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -105,44 +134,54 @@
     <aside class="menu">
         <p>Menu</p>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="#">Home</a></li> <!-- Menu item: Home -->
+            <li><a href="#">About</a></li> <!-- Menu item: About -->
+            <li><a href="#">Contact</a></li> <!-- Menu item: Contact -->
+            <li><a href="#">Help</a></li> <!-- Menu item: Help -->
         </ul>
     </aside>
     
     <!-- Main Content: Interactive Sorting Tool -->
     <main id="content">
-        <h2>Sort Your Numbers</h2>
+        <h2>Sort Your Numbers</h2> <!-- Title for sorting tool -->
         <p>Enter a list of numbers separated by commas (e.g., 5,3,8,4,2):</p>
-        <input type="text" id="numberInput" placeholder="Enter numbers here">
-        <button id="sortButton">Sort Numbers</button>
-        <p>Sorted Array: <span id="sortedArrayDisplay"></span></p>
-        
+        <input type="text" id="numberInput" placeholder="Enter numbers here"> <!-- Input field for numbers -->
+        <button id="sortButton">Sort Numbers</button> <!-- Button to trigger sorting -->
+        <p>Sorted Array: <span id="sortedArrayDisplay"></span></p> <!-- Area to display the sorted numbers -->
+
         <!-- Addendum explaining the process -->
         <section>
-    <h3>Addendum</h3>
-    <ul>
-        <li>This tool accepts a comma-separated list of numbers from the user.</li>
-        <li>When the "Sort Numbers" button is clicked, the input string is parsed into an array of numbers and sorted in ascending order.</li>
-        <li>The sorted result is then displayed in the "Sorted Array" section on the page.</li>
-        <li>Challenge: Ensuring that each input was properly converted to a number, as users may enter spaces around commas.</li>
-        <li>Solution: Used JavaScript’s <code>split()</code> method with <code>parseFloat()</code> to handle various input formats accurately.</li>
-        <li>The event on the <code>sortButton</code> demonstrates basic JavaScript interactivity within a CSS grid-based layout.</li>
-    </ul>
-</section>    </main>
+            <h3>Addendum</h3>
+            <ul>
+                <li>This tool accepts a comma-separated list of numbers from the user.</li>
+                <li>When the "Sort Numbers" button is clicked, the input string is parsed into an array of numbers and sorted in ascending order.</li>
+                <li>The sorted result is then displayed in the "Sorted Array" section on the page.</li>
+                <li>Challenge: Ensuring that each input was properly converted to a number, as users may enter spaces around commas.</li>
+                <li>Solution: Used JavaScript’s <code>split()</code> method with <code>parseFloat()</code> to handle various input formats accurately.</li>
+                <li>The event on the <code>sortButton</code> demonstrates basic JavaScript interactivity within a CSS grid-based layout.</li>
+            </ul>
+        </section>
+    </main>
     
+    <!-- Advertisement Section (clickable image linking to Amazon) -->
+    <aside class="advertisement-area">
+        <h3>Check out this Amazing Deal!</h3> <!-- Heading added for the advertisement -->
+        <a href="https://www.amazon.com/Amazon-Fire-TV-Stick-4K-streaming-device/dp/B0CJM1GNFQ/?_encoding=UTF8&pd_rd_w=WL86U&content-id=amzn1.sym.72406710-d583-4731-97f5-a0a5f3b1f83e&pf_rd_p=72406710-d583-4731-97f5-a0a5f3b1f83e&pf_rd_r=YJ8H412V78WKNK8J3JFS&pd_rd_wg=jDoY4&pd_rd_r=c86c8835-bea1-4833-a8ac-b028c4ba6e7c&ref_=pd_hp_d_atf_dealz_cs" target="_blank">
+           <img src="https://m.media-amazon.com/images/G/01/social_share/amazon_logo._CB635397845_.png" alt="Amazon Ad" class="advertisement">
+        </a>
+    </aside>
+
     <!-- Footer with Last Modified Script -->
     <footer>
-        <p>Last updated: <span id="lastModified"></span></p>
+        <p>Last updated: <span id="lastModified"></span></p> <!-- Display last modified date -->
     </footer>
 
     <!-- JavaScript for Last Modified Date and Sorting -->
     <script type="text/javascript">
-         var x = document.lastModified;
-         document.getElementById('lastModified').textContent = x;
+         var x = document.lastModified;  // Get the last modified date of the document
+         document.getElementById('lastModified').textContent = x;  // Display the last modified date in the footer
     </script>
+    <!-- Link to external JavaScript file for functionality -->
     <script src="script.js"></script>
 </body>
 </html>
